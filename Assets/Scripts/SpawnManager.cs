@@ -17,12 +17,6 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating("SpawnObject", startDelay, repeatRate);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SpawnObject()
     {
         Instantiate(obstacle, spawnPos, obstacle.transform.rotation);
