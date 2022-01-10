@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//para que la repeticion del fondo funcione, se requiere la componente moveleft
+[RequireComponent(typeof(MoveLeft))]
 public class RepeatBackground : MonoBehaviour
 {
 
