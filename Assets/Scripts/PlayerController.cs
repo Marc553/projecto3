@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,10 +10,14 @@ public class PlayerController : MonoBehaviour
     public float gravityModifier = 1;
     private bool isOnTheGround = true;
     public bool gameOver;
+    private Animator playerAnimator;
+   
+     
 
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
        // playerRigidbody.AddForce(Vector3.up * jumpForce);
         Physics.gravity *= gravityModifier;
         gameOver = false;
@@ -24,7 +29,10 @@ public class PlayerController : MonoBehaviour
         {
             playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnTheGround = false;
+            playerAnimator.SetTrigger("Jump_trig");
         }
+
+
     }
 
     private void OnCollisionEnter(Collision otherCollider)
@@ -33,7 +41,10 @@ public class PlayerController : MonoBehaviour
         if (otherCollider.gameObject.CompareTag("Obstacle"))
         {
             gameOver = true;
-            isOnTheGround = false;
+            int randomDeath = Random.Range(1, 3);
+            playerAnimator.SetBool("Death_b", true);
+            playerAnimator.SetInteger("DeathType_int", randomDeath);
+
 
         }
         //me permite saltar( cohca contra el objeto ETIQUETADO como "Ground")
