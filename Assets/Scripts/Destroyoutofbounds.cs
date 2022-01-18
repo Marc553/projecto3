@@ -8,7 +8,7 @@ public class Destroyoutofbounds : MonoBehaviour
     private float sideLimit = -5f;
     void Update()
     {
-        //Bala fallida
+        //Valal fuera del limte
         if (transform.position.x < sideLimit)
         {
             Destroy(gameObject);
